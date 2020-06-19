@@ -499,13 +499,13 @@ end)
 
 AddEventHandler('nwtv_autoecolejob:hasEnteredMarker', function(zone)
 
-  if zone == 'DrivingActions' and ESX.PlayerData.job ~= nil and ESX.PlayerData.job.name == 'driving' or ESX.PlayerData.job ~= nil and ESX.PlayerData.job.name == 'offdriving' then
+  if zone == 'DrivingActions' then
     CurrentAction     = 'driving_actions_menu'
     CurrentActionMsg  = _U('open_actions')
     CurrentActionData = {}
   end
 
-  if zone == 'VehicleDeleter' and ESX.PlayerData.job ~= nil and ESX.PlayerData.job.name == 'driving' then
+  if zone == 'VehicleDeleter' then
 
     local playerPed = GetPlayerPed(-1)
 
@@ -620,17 +620,12 @@ Citizen.CreateThread(function()
           AddTextComponentString(CurrentActionMsg)
           DisplayHelpTextFromStringLabel(0, 0, 1, -1)
 
-          if IsControlJustReleased(0, 38) and ESX.PlayerData.job ~= nil and ESX.PlayerData.job.name == 'offdriving' then
+          if IsControlJustReleased(0, 38) and ESX.PlayerData.job ~= nil and ESX.PlayerData.job.name == 'driving' then
 
             if CurrentAction == 'driving_actions_menu' then
                 OpenDrivingActionsMenu()
             end
 			
-			elseif IsControlJustReleased(0, 38) and ESX.PlayerData.job ~= nil and ESX.PlayerData.job.name == 'driving' then
-			
-            if CurrentAction == 'driving_actions_menu' then
-                OpenDrivingActionsMenu()
-            end
 
             if CurrentAction == 'delete_vehicle' then
 
@@ -651,6 +646,12 @@ Citizen.CreateThread(function()
               end
 
               ESX.Game.DeleteVehicle(CurrentActionData.vehicle)
+            end
+			
+	elseif IsControlJustReleased(0, 38) and ESX.PlayerData.job ~= nil and ESX.PlayerData.job.name == 'offdriving' then
+			
+            if CurrentAction == 'driving_actions_menu' then
+                OpenDrivingActionsMenu()
             end
 
             CurrentAction = nil
