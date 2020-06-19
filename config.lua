@@ -6,7 +6,7 @@ Config.MarkerSize                 = {x = 1.5, y = 1.5, z = 0.5}
 Config.EnablePlayerManagement     = true
 Config.MaxInService           = -1
 
-Config.Locale                     = 'en'
+Config.Locale                     = 'fr'
 
 Config.Zones = {
        
